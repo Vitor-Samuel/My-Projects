@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html> 
+  <head>
+    <title>Faça Chover!</title> 
+  </head>
+  <body>
+	<!--This draws the canvas on the webpage -->
+    <canvas id="mycanvas"></canvas> 
+  </body>
+ 
+  <!-- Include the processing.js library -->
+  <!-- See https://khanacademy.zendesk.com/hc/en-us/articles/202260404-What-parts-of-ProcessingJS-does-Khan-Academy-support- for differences -->
+  <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
+  <script>
+  var programCode = function(processingInstance) {
+    with (processingInstance) {
+      size(400, 400); 
+      frameRate(30);
+        
+      // Paste code from Khan Academy here:
+      noStroke();
+
+      var positions = [{x: 200, y: 0}];
+      draw = function() {
+        background(100, 100, 255);
+
+        fill(150, 150, 255)
+        for (i = 0; i < positions.length; i++) {
+          ellipse(positions[i].x, positions[i].y, 10, 10);
+          positions[i].y += 3;
+          if (positions[i].y >= 400) {
+            positions[i].y = 0;
+          }
+        }
+      };
+
+      mouseClicked = function() {
+        positions.push({x: random(0, 400), y: 0});
+      };
+    }};
+
+  // Get the canvas that ProcessingJS will use
+  var canvas = document.getElementById("mycanvas"); 
+  // Pass the function to ProcessingJS constructor
+  var processingInstance = new Processing(canvas, programCode); 
+  </script>
+</html>
